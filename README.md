@@ -1,4 +1,4 @@
-# PhantomJS Runner #
+# PhantomJS Runner QUnit Plugin #
 A PhantomJS-powered headless test runner, providing basic console output for QUnit tests.  
 
 ### Usage ###
@@ -13,4 +13,4 @@ A PhantomJS-powered headless test runner, providing basic console output for QUn
 
 ### Notes ###
  - Requires [PhantomJS](http://phantomjs.org/) 1.6+ (1.7+ recommended).
- - If you're using Grunt, you should take a look at its [qunit task](https://github.com/gruntjs/grunt-contrib-qunit).
+ - QUnit plugins are also available for [gulp](https://github.com/jonkemp/gulp-qunit) and [Grunt](https://github.com/gruntjs/grunt-contrib-qunit).
