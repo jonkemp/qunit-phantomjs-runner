@@ -87,6 +87,10 @@
 		window.document.addEventListener('DOMContentLoaded', function() {
 			var currentTestAssertions = [];
 
+			QUnit.begin(function() {
+				console.log("");
+			});
+
 			QUnit.log(function(details) {
 				var response;
 
@@ -112,24 +116,34 @@
 				currentTestAssertions.push('Failed assertion: ' + response);
 			});
 
+			QUnit.moduleStart(function( details ) {
+				console.log(details.name);
+			});
+
+			QUnit.moduleDone(function( details ) {
+				console.log("");
+			});
+
 			QUnit.testDone(function(result) {
 				var i,
 					len,
 					name = result.module + ': ' + result.name;
 
-				if (result.failed) {
-					console.log('Test failed: ' + name);
+				console.log((!result.failed ? "✔ ": "✖ ") + result.name);
 
+				if (result.failed) {
+					console.log("");
 					for (i = 0, len = currentTestAssertions.length; i < len; i++) {
-						console.log('    ' + currentTestAssertions[i]);
+						console.log(currentTestAssertions[i]);
 					}
+					console.log("");
 				}
 
 				currentTestAssertions.length = 0;
 			});
 
 			QUnit.done(function(result) {
-				console.log('Took ' + result.runtime +  'ms to run ' + result.total + ' tests. ' + result.passed + ' passed, ' + result.failed + ' failed.');
+				console.log('Took ' + result.runtime +  'ms to run ' + result.total + ' assertions. ' + result.passed + ' passed, ' + result.failed + ' failed.');
 
 				if (typeof window.callPhantom === 'function') {
 					window.callPhantom({
