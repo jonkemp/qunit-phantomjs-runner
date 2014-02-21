@@ -1,5 +1,5 @@
 /*
- * QtWebKit-powered headless test runner using PhantomJS
+ * PhantomJS Runner QUnit Plugin 1.0.0
  *
  * PhantomJS binaries: http://phantomjs.org/download.html
  * Requires PhantomJS 1.6+ (1.7+ recommended)
@@ -115,10 +115,15 @@
 			QUnit.testDone(function(result) {
 				var i,
 					len,
-					name = result.module + ': ' + result.name;
+					name = '';
+
+				if (result.module) {
+					name += result.module + ': ';
+				}
+				name += result.name;
 
 				if (result.failed) {
-					console.log('Test failed: ' + name);
+					console.log('\n' + 'Test failed: ' + name);
 
 					for (i = 0, len = currentTestAssertions.length; i < len; i++) {
 						console.log('    ' + currentTestAssertions[i]);
@@ -129,7 +134,7 @@
 			});
 
 			QUnit.done(function(result) {
-				console.log('Took ' + result.runtime +  'ms to run ' + result.total + ' tests. ' + result.passed + ' passed, ' + result.failed + ' failed.');
+				console.log('\n' + 'Took ' + result.runtime +  'ms to run ' + result.total + ' tests. ' + result.passed + ' passed, ' + result.failed + ' failed.');
 
 				if (typeof window.callPhantom === 'function') {
 					window.callPhantom({
