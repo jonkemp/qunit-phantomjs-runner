@@ -1,5 +1,5 @@
 /*
- * PhantomJS Runner QUnit Plugin 1.1.0
+ * PhantomJS Runner QUnit Plugin 1.2.0
  *
  * PhantomJS binaries: http://phantomjs.org/download.html
  * Requires PhantomJS 1.6+ (1.7+ recommended)
