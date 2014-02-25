@@ -6,9 +6,21 @@ A PhantomJS-powered headless test runner, providing basic console output for QUn
   phantomjs runner.js [url-of-your-qunit-testsuite] [timeout-in-seconds]
 ```
 
+Show test cases:
+
+```bash
+  phantomjs runner-list.js [url-of-your-qunit-testsuite] [timeout-in-seconds]
+```
+
 ### Example ###
 ```bash
   phantomjs runner.js http://localhost/qunit/test/index.html
+```
+
+Show test cases:
+
+```bash
+  phantomjs runner-list.js http://localhost/qunit/test/index.html
 ```
 
 ### Notes ###
