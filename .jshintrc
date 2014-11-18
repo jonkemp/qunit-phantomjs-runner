@@ -15,12 +15,9 @@
 	"noempty": true,
 	"nonew": true,
 	"plusplus": false,
-	"quotmark": false,
+	"quotmark": "single",
 	"undef": true,
 	"unused": true,
-	"trailing": true,
 
-	"browser": true,
-
-	"onevar": true
+	"browser": true
 }
