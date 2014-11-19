@@ -53,7 +53,9 @@
                     console.error('No tests were executed. Are you loading tests asynchronously?');
                 }
 
-                phantom.exit(failed ? 1 : 0);
+                setTimeout(function() {
+                    phantom.exit(failed ? 1 : 0);
+                }, 0);
             }
         }
     };
@@ -61,7 +63,9 @@
     page.open(url, function (status) {
         if (status !== 'success') {
             console.error('Unable to access network: ' + status);
-            phantom.exit(1);
+            setTimeout(function() {
+                phantom.exit(1);
+            }, 0);
         } else {
             // Cannot do this verification with the 'DOMContentLoaded' handler because it
             // will be too late to attach it if a page does not have any script tags.
@@ -70,7 +74,9 @@
             });
             if (qunitMissing) {
                 console.error('The `QUnit` object is not present on this page.');
-                phantom.exit(1);
+                setTimeout(function() {
+                    phantom.exit(1);
+                }, 0);
             }
 
             // Set a timeout on the test running, otherwise tests with async problems will hang forever
