@@ -1,0 +1,11 @@
+{
+  "name": "qunit-phantomjs-runner",
+  "version": "1.2.0",
+  "homepage": "https://github.com/jonkemp/qunit-phantomjs-runner",
+  "authors": [
+    "Jonathan Kemp <kempdogg@gmail.com>"
+  ],
+  "description": "A PhantomJS-powered headless test runner for QUnit",
+  "main": "runner.js",
+  "license": "MIT"
+}
