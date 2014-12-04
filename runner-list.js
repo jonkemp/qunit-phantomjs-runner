@@ -73,13 +73,16 @@
                 phantom.exit(1);
             }
 
-            // Set a timeout on the test running, otherwise tests with async problems will hang forever
-            if (typeof timeout === 'number') {
-                setTimeout(function () {
-                    console.error('The specified timeout of ' + timeout + ' seconds has expired. Aborting...');
-                    phantom.exit(1);
-                }, timeout * 1000);
+            // Set a default timeout value if the user does not provide one
+            if (typeof timeout === 'undefined') {
+                timeout = 5;
             }
+
+            // Set a timeout on the test running, otherwise tests with async problems will hang forever
+            setTimeout(function () {
+                console.error('The specified timeout of ' + timeout + ' seconds has expired. Aborting...');
+                phantom.exit(1);
+            }, timeout * 1000);
 
             // Do nothing... the callback mechanism will handle everything!
         }
@@ -87,7 +90,6 @@
 
     function addLogging() {
         window.document.addEventListener('DOMContentLoaded', function () {
-            var currentTestAssertions = [];
 
             QUnit.log(function (details) {
                 var response;
