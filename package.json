@@ -1,0 +1,30 @@
+{
+  "name": "qunit-phantomjs-runner",
+  "version": "1.2.1",
+  "description": "A PhantomJS-powered headless test runner for QUnit",
+  "main": "runner.js",
+  "scripts": {
+    "test": "mocha --reporter dot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonkemp/qunit-phantomjs-runner.git"
+  },
+  "keywords": [
+    "qunit",
+    "phantomjs",
+    "test",
+    "testing"
+  ],
+  "author": "Jonathan Kemp <kempdogg@gmail.com> (http://jonkemp.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonkemp/qunit-phantomjs-runner/issues"
+  },
+  "homepage": "https://github.com/jonkemp/qunit-phantomjs-runner",
+  "devDependencies": {
+    "mocha": "^2.0.1",
+    "phantomjs": "^1.9.12",
+    "qunitjs": "^1.15.0"
+  }
+}
