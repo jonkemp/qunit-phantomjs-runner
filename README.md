@@ -4,21 +4,26 @@
 
 The runner requires [PhantomJS](http://phantomjs.org/). If you don't want to deal with installing PhantomJS or using Grunt to run your tests, try [node-qunit-phantomjs](https://github.com/jonkemp/node-qunit-phantomjs).
 
-## Usage
+## Installation
 ```bash
-$ phantomjs runner.js [url-of-your-qunit-testsuite]
+$ npm install qunit-phantomjs-runner
 ```
 
-Run with options:
+## Usage
+```bash
+$ phantomjs path/to/runner.js [url-of-your-qunit-testsuite]
+```
+
+With options:
 
 ```bash
-$ phantomjs [phantom arguments] runner.js [url-of-your-qunit-testsuite] [timeout-in-seconds]
+$ phantomjs [phantom arguments] path/to/runner.js [url-of-your-qunit-testsuite] [timeout-in-seconds]
 ```
 
 Show test cases:
 
 ```bash
-$ phantomjs runner-list.js [url-of-your-qunit-testsuite]
+$ phantomjs path/to/runner-list.js [url-of-your-qunit-testsuite]
 ```
 ## Timeout
 In `v2.0`, a default timeout of 5 seconds was added. The timeout was optional before. This could cause tests to break, which is the reason for the major version bump.
@@ -26,9 +31,9 @@ In `v2.0`, a default timeout of 5 seconds was added. The timeout was optional be
 ## Notes
  - Requires [PhantomJS](http://phantomjs.org/) 1.6+ (1.7+ recommended).
  - QUnit plugins are also available for [gulp](https://github.com/jonkemp/gulp-qunit) and [Grunt](https://github.com/gruntjs/grunt-contrib-qunit).
- 
+
 ## License 
- 
+
 The MIT License
- 
+
 Copyright (c) 2014, Jonathan Kemp
