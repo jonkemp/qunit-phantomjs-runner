@@ -1,16 +1,3 @@
-/*
- * PhantomJS Runner QUnit Plugin 1.2.0
- *
- * PhantomJS binaries: http://phantomjs.org/download.html
- * Requires PhantomJS 1.6+ (1.7+ recommended)
- *
- * Run with:
- *   phantomjs runner.js [url-of-your-qunit-testsuite]
- *
- * e.g.
- *   phantomjs runner.js http://localhost/qunit/test/index.html
- */
-
 /*global phantom:false, require:false, console:false, window:false, QUnit:false */
 
 (function () {
