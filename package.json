@@ -1,6 +1,6 @@
 {
   "name": "qunit-phantomjs-runner",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "description": "A PhantomJS-powered headless test runner for QUnit",
   "main": "runner.js",
   "scripts": {
