@@ -22,10 +22,14 @@ var assert = require('assert'),
             childArgs.push( filepath );
         }
 
-        args = args.slice(2);
+        // Optional timeout value
+        if ( args[2] ) {
+            childArgs.push( args[2] );
+        }
 
-        if (args.length) {
-            childArgs.push( args );
+        // Optional phantomjs options value
+        if ( args[3] ) {
+            childArgs.unshift( args[3] );
         }
 
         childProcess.execFile(binPath, childArgs, function (err, stdout, stderr) {
@@ -80,7 +84,7 @@ describe('qunit-phantomjs-runner runner.js', function () {
         process.stdout.write = function (str) {
             //out(str);
 
-            assert.ok(/Usage:\n  phantomjs runner.js \[url-of-your-qunit-testsuite\] \[timeout-in-seconds\]/.test(str));
+            assert.ok(/Usage:\n  phantomjs \[phantom arguments\] runner.js \[url-of-your-qunit-testsuite\] \[timeout-in-seconds\]/.test(str));
             process.stdout.write = out;
             cb();
         };
@@ -136,6 +140,23 @@ describe('qunit-phantomjs-runner runner.js', function () {
             assert.ok(/Unable to access network:/.test(str));
             process.stdout.write = out;
             cb();
+        };
+    });
+
+    it('should pass options to phantomjs', function (cb) {
+
+        qunit('test/fixtures/passing.html', '../runner.js', 5, '--help');
+
+        process.stdout.write = function (str) {
+            var lines = str.split('\n');
+
+            for (var i = 0, length = lines.length; i < length; i++) {
+                if (/.*--help.*Shows this message and quits/.test(lines[i])) {
+                    assert(true);
+                    process.stdout.write = out;
+                    cb();
+                }
+            }
         };
     });
 });
