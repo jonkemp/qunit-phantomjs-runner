@@ -9,7 +9,6 @@
 	"eqeqeq": true,
 	"forin": true,
 	"immed": true,
-	"latedef": true,
 	"newcap": true,
 	"noarg": true,
 	"noempty": true,
