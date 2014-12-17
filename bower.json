@@ -1,6 +1,6 @@
 {
   "name": "qunit-phantomjs-runner",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "homepage": "https://github.com/jonkemp/qunit-phantomjs-runner",
   "authors": [
     "Jonathan Kemp <kempdogg@gmail.com>"
