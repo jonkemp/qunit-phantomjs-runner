@@ -243,3 +243,86 @@ describe('qunit-phantomjs-runner runner-list.js', function () {
         };
     });
 });
+
+describe('qunit-phantomjs-runner runner-json.js', function () {
+    this.timeout(5000);
+
+    it('tests should pass', function (cb) {
+
+        qunit('test/fixtures/passing.html', '../runner-json.js');
+
+        process.stdout.write = function (str) {
+            //out(str);
+
+            assert.ok(/"failed":0,"passed":10,"total":10/.test(str));
+            process.stdout.write = out;
+            cb();
+        };
+    });
+
+    it('tests should fail', function (cb) {
+
+        qunit('test/fixtures/failing.html', '../runner-json.js');
+
+        process.stdout.write = function (str) {
+            //out(str);
+
+            assert.ok(/"failed":1,"passed":9,"total":10/.test(str));
+            process.stdout.write = out;
+            cb();
+        };
+    });
+
+    it('should error on no tests', function (cb) {
+
+        qunit('test/fixtures/no-tests.html', '../runner-json.js');
+
+        process.stdout.write = function (str) {
+            //out(str);
+
+            assert.ok(/No tests were executed. Are you loading tests asynchronously?/.test(str));
+            process.stdout.write = out;
+            cb();
+        };
+    });
+
+    it('should error when QUnit not found', function (cb) {
+
+        qunit('test/fixtures/no-qunit.html', '../runner-json.js');
+
+        process.stdout.write = function (str) {
+            //out(str);
+
+            assert.ok(/The `QUnit` object is not present on this page./.test(str));
+            process.stdout.write = out;
+            cb();
+        };
+    });
+
+    it('should time out', function (cb) {
+        this.timeout(10000);
+
+        qunit('test/fixtures/async.html', '../runner-json.js', 1);
+
+        process.stdout.write = function (str) {
+            //out(str);
+
+            assert.ok(/The specified timeout of 1 seconds has expired. Aborting.../.test(str));
+            process.stdout.write = out;
+            cb();
+        };
+    });
+
+    it('should show unable to access network', function (cb) {
+
+        qunit('test/fixtures/not-found.html', '../runner-json.js');
+
+        process.stdout.write = function (str) {
+            //out(str);
+
+            assert.ok(/Unable to access network:/.test(str));
+            process.stdout.write = out;
+            cb();
+        };
+    });
+});
