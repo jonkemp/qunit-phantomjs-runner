@@ -3,4 +3,5 @@
 .jshintrc
 .travis.yml
 bower.json
+gulpfile.js
 test

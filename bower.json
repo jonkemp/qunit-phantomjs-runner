@@ -9,7 +9,8 @@
   "main": "runner.js",
   "ignore": [
     "**/.*",
-    "test"
+    "test",
+    "gulpfile.js"
   ],
   "keywords": [
     "qunit",
