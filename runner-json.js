@@ -6,6 +6,8 @@
     var url, page, timeout,
         args = require('system').args;
 
+    var jUnitReportFile;
+
     // arg[0]: scriptName, args[1...]: arguments
     if (args.length < 2) {
         console.error('Usage:\n  phantomjs [phantom arguments] runner.js [url-of-your-qunit-testsuite] [timeout-in-seconds]');
@@ -33,7 +35,27 @@
         var result,
             failed;
 
-        if (message) {
+        if (message && 'jUnitReportFile' in message)
+        {
+            jUnitReportFile = message.jUnitReportFile;
+        }
+        else if (message && 'jUnitReport' in message)
+        {
+            if (jUnitReportFile)
+            {
+                console.log("Write jUnit to File: " + jUnitReportFile);
+                var fs = require('fs');
+                try 
+                {
+                    fs.write(jUnitReportFile, message.jUnitReport, 'w');
+                } 
+                catch(e)
+                {
+                    console.log(e);
+                }
+            }
+        }
+        else if (message) {
             if (message.name === 'QUnit.done') {
                 result = message.data;
                 failed = !result || !result.total || result.failed;
@@ -138,6 +160,19 @@
                     });
                 }
             });
+
+            if ('jUnitReport' in QUnit)
+            {
+                QUnit.jUnitReport = function (result) {
+                    if ('xml' in result)
+                    {
+                        if (typeof window.callPhantom === 'function') {
+                             window.callPhantom({ jUnitReport: result.xml });
+                        }
+                    }
+                };
+            }
+
         }, false);
     }
 

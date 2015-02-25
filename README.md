@@ -25,6 +25,17 @@ Show test cases:
 ```bash
 $ phantomjs path/to/runner-list.js [url-of-your-qunit-testsuite]
 ```
+## Use with jUnit and write an result.xml file
+In that case to output a xml file for the testresult's, it's possible to load the qUnit Plugin [https://github.com/JamesMGreene/qunit-reporter-junit] and write at the top of you qUnit HTML File:
+
+`
+<script>
+    if (typeof window.callPhantom === 'function') {
+        window.callPhantom({jUnitReportFile: 'test1.xml'});
+    }
+</script>
+`
+
 ## Timeout
 In `v2.0`, a default timeout of 5 seconds was added. The timeout was optional before. This could cause tests to break, which is the reason for the major version bump.
 
