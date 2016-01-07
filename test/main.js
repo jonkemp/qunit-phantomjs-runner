@@ -32,6 +32,11 @@ var assert = require('assert'),
             childArgs.unshift( args[3] );
         }
 
+        // Optional page properties value
+        if ( args[4] ) {
+            childArgs.push( args[4] );
+        }
+
         childProcess.execFile(binPath, childArgs, function (err, stdout, stderr) {
             if (stdout) {
                 stdout = stdout.trim(); // Trim trailing cr-lf
@@ -46,7 +51,13 @@ var assert = require('assert'),
                 console.log(err);
             }*/
         });
-    };
+    },
+    pageProperties = JSON.stringify({
+        viewportSize: {
+            width: 1000,
+            height: 1000
+        }
+    });
 
 describe('qunit-phantomjs-runner runner.js', function () {
     this.timeout(5000);
@@ -159,6 +170,19 @@ describe('qunit-phantomjs-runner runner.js', function () {
             }
         };
     });
+
+    it('should set custom viewport', function (cb) {
+
+        qunit('test/fixtures/custom-viewport.html', '../runner.js', 5, '', pageProperties);
+
+        process.stdout.write = function (str) {
+            //out(str);
+
+            assert.ok(/1 passed. 0 failed./.test(str));
+            process.stdout.write = out;
+            cb();
+        };
+    });
 });
 
 describe('qunit-phantomjs-runner runner-list.js', function () {
@@ -242,6 +266,19 @@ describe('qunit-phantomjs-runner runner-list.js', function () {
             cb();
         };
     });
+
+    it('should set custom viewport', function (cb) {
+
+        qunit('test/fixtures/custom-viewport.html', '../runner-list.js', 5, '', pageProperties);
+
+        process.stdout.write = function (str) {
+            //out(str);
+
+            assert.ok(/1 passed. 0 failed./.test(str));
+            process.stdout.write = out;
+            cb();
+        };
+    });
 });
 
 describe('qunit-phantomjs-runner runner-json.js', function () {
@@ -321,6 +358,19 @@ describe('qunit-phantomjs-runner runner-json.js', function () {
             //out(str);
 
             assert.ok(/Unable to access network:/.test(str));
+            process.stdout.write = out;
+            cb();
+        };
+    });
+
+    it('should set custom viewport', function (cb) {
+
+        qunit('test/fixtures/custom-viewport.html', '../runner-json.js', 5, '', pageProperties);
+
+        process.stdout.write = function (str) {
+            //out(str);
+
+            assert.ok(/"failed":0,"passed":1,"total":1/.test(str));
             process.stdout.write = out;
             cb();
         };

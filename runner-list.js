@@ -8,7 +8,7 @@
 
     // arg[0]: scriptName, args[1...]: arguments
     if (args.length < 2) {
-        console.error('Usage:\n  phantomjs [phantom arguments] runner-list.js [url-of-your-qunit-testsuite] [timeout-in-seconds]');
+        console.error('Usage:\n  phantomjs [phantom arguments] runner-list.js [url-of-your-qunit-testsuite] [timeout-in-seconds] [page-properties]');
         exit(1);
     }
 
@@ -19,6 +19,20 @@
     }
 
     page = require('webpage').create();
+
+    if (args[3] !== undefined) {
+        try {
+            var pageProperties = JSON.parse(args[3]);
+
+            if (pageProperties) {
+                for (var prop in pageProperties) {
+                    page[prop] = pageProperties[prop];
+                }
+            }
+        } catch(e) {
+            console.error('Error parsing "' + args[3] + '": ' + e);
+        }
+    }
 
     // Route `console.log()` calls from within the Page context to the main Phantom context (i.e. current `this`)
     page.onConsoleMessage = function (msg) {
