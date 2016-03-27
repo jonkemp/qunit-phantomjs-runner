@@ -26,7 +26,9 @@
 
             if (pageProperties) {
                 for (var prop in pageProperties) {
-                    page[prop] = pageProperties[prop];
+                    if (pageProperties.hasOwnProperty(prop)) {
+                        page[prop] = pageProperties[prop];
+                    }
                 }
             }
         } catch(e) {
