@@ -4,7 +4,7 @@
   "description": "A PhantomJS-powered headless test runner for QUnit",
   "main": "runner.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -24,10 +24,10 @@
   "homepage": "https://github.com/jonkemp/qunit-phantomjs-runner",
   "devDependencies": {
     "gulp": "^3.8.10",
-    "gulp-jshint": "^1.9.0",
+    "gulp-jshint": "^2.0.0",
     "gulp-mocha": "^2.0.0",
-    "mocha": "^2.0.1",
-    "phantomjs": "^1.9.12",
-    "qunitjs": "^1.15.0"
+    "mocha": "^2.4.5",
+    "phantomjs-prebuilt": "^2.1.7",
+    "qunitjs": "^1.23.0"
   }
 }
