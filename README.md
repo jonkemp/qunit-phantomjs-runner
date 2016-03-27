@@ -17,7 +17,7 @@ $ phantomjs path/to/runner.js [url-of-your-qunit-testsuite]
 With options:
 
 ```bash
-$ phantomjs [phantom arguments] path/to/runner.js [url-of-your-qunit-testsuite] [timeout-in-seconds]
+$ phantomjs [phantom arguments] path/to/runner.js [url-of-your-qunit-testsuite] [timeout-in-seconds] [page-properties]
 ```
 
 Show test cases:
@@ -25,6 +25,13 @@ Show test cases:
 ```bash
 $ phantomjs path/to/runner-list.js [url-of-your-qunit-testsuite]
 ```
+
+Example setting the viewport size:
+
+```bash
+$ phantomjs path/to/runner-list.js [url-of-your-qunit-testsuite] 5 '{"viewportSize":{"width":1000,"height":1000}}'
+```
+
 ## Timeout
 In `v2.0`, a default timeout of 5 seconds was added. The timeout was optional before. This could cause tests to break, which is the reason for the major version bump.
 
