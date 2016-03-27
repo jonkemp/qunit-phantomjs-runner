@@ -8,7 +8,7 @@ var assert = require('assert'),
     qunit = function (filepath, runner) {
         var path = require('path'),
             childProcess = require('child_process'),
-            phantomjs = require('phantomjs'),
+            phantomjs = require('phantomjs-prebuilt'),
             binPath = phantomjs.path,
             args = Array.prototype.slice.call(arguments);
 
