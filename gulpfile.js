@@ -6,7 +6,7 @@ var gulp = require('gulp'),
     mocha = require('gulp-mocha');
 
 var paths = {
-    scripts: ['./*.js', './test/*.js', '!./gulpfile.js']
+    scripts: ['./*.js', '!./gulpfile.js']
 };
 
 gulp.task('lint', function() {
@@ -17,7 +17,7 @@ gulp.task('lint', function() {
 
 gulp.task('test', function() {
     return gulp.src('./test/*.js')
-        .pipe(mocha({reporter: 'dot'}));
+        .pipe(mocha());
 });
 
 gulp.task('watch', function () {
