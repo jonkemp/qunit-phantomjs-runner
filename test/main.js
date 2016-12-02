@@ -95,7 +95,7 @@ describe('qunit-phantomjs-runner runner.js', function () {
         process.stdout.write = function (str) {
             //out(str);
 
-            assert.ok(/Usage:\n  phantomjs \[phantom arguments\] runner.js \[url-of-your-qunit-testsuite\] \[timeout-in-seconds\]/.test(str));
+            assert.ok(/Usage:\r?\n  phantomjs \[phantom arguments\] runner.js \[url-of-your-qunit-testsuite\] \[timeout-in-seconds\]/.test(str));
             process.stdout.write = out;
             cb();
         };
@@ -373,6 +373,114 @@ describe('qunit-phantomjs-runner runner-json.js', function () {
             assert.ok(/"failed":0,"passed":1,"total":1/.test(str));
             process.stdout.write = out;
             cb();
+        };
+    });
+});
+
+describe('qunit-phantomjs-runner runner-xml.js', function () {
+    this.timeout(5000);
+
+    it('tests should pass', function (cb) {
+
+        qunit('test/fixtures/passing.html', '../runner-xml.js');
+
+        process.stdout.write = function (str) {
+            //out(str);
+
+            process.stdout.write = out;
+            require('xml2js').parseString(str, function (err, result) {
+                assert.equal(result.testsuites.$.tests, 10);
+                assert.equal(result.testsuites.$.failures, 0);
+                assert.equal(result.testsuites.$.errors, 0);
+                cb();
+            });
+        };
+    });
+
+    it('tests should fail', function (cb) {
+
+        qunit('test/fixtures/failing.html', '../runner-xml.js');
+
+        process.stdout.write = function (str) {
+            //out(str);
+
+            process.stdout.write = out;
+            require('xml2js').parseString(str, function (err, result) {
+                assert.equal(result.testsuites.$.tests, 10);
+                assert.equal(result.testsuites.$.failures, 1);
+                assert.equal(result.testsuites.$.errors, 0);
+                cb();
+            });
+        };
+    });
+
+    it('should error on no tests', function (cb) {
+
+        qunit('test/fixtures/no-tests.html', '../runner-xml.js');
+
+        process.stdout.write = function (str) {
+            //out(str);
+
+            assert.ok(/No tests were executed. Are you loading tests asynchronously?/.test(str));
+            process.stdout.write = out;
+            cb();
+        };
+    });
+
+    it('should error when QUnit not found', function (cb) {
+
+        qunit('test/fixtures/no-qunit.html', '../runner-xml.js');
+
+        process.stdout.write = function (str) {
+            //out(str);
+
+            assert.ok(/The `QUnit` object is not present on this page./.test(str));
+            process.stdout.write = out;
+            cb();
+        };
+    });
+
+    it('should time out', function (cb) {
+        this.timeout(10000);
+
+        qunit('test/fixtures/async.html', '../runner-xml.js', 1);
+
+        process.stdout.write = function (str) {
+            //out(str);
+
+            assert.ok(/The specified timeout of 1 seconds has expired. Aborting.../.test(str));
+            process.stdout.write = out;
+            cb();
+        };
+    });
+
+    it('should show unable to access network', function (cb) {
+
+        qunit('test/fixtures/not-found.html', '../runner-xml.js');
+
+        process.stdout.write = function (str) {
+            //out(str);
+
+            assert.ok(/Unable to access network:/.test(str));
+            process.stdout.write = out;
+            cb();
+        };
+    });
+
+    it('should set custom viewport', function (cb) {
+
+        qunit('test/fixtures/custom-viewport.html', '../runner-xml.js', 5, '', pageProperties);
+
+        process.stdout.write = function (str) {
+            //out(str);
+
+            process.stdout.write = out;
+            require('xml2js').parseString(str, function (err, result) {
+                assert(result.testsuites.$.tests, 1);
+                assert(result.testsuites.$.failures, 0);
+                assert(result.testsuites.$.errors, 0);
+                cb();
+            });
         };
     });
 });
