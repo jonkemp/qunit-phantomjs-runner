@@ -25,8 +25,8 @@
   "devDependencies": {
     "gulp": "^3.8.10",
     "gulp-jshint": "^2.0.0",
-    "gulp-mocha": "^2.0.0",
-    "mocha": "^2.4.5",
+    "gulp-mocha": "^4.3.1",
+    "mocha": "^4.0.1",
     "phantomjs-prebuilt": "^2.1.7",
     "qunitjs": "^1.23.0",
     "xml2js": "^0.4.16"
