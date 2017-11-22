@@ -2,17 +2,16 @@
 'use strict';
 
 var gulp = require('gulp'),
-    jshint = require('gulp-jshint'),
-    mocha = require('gulp-mocha');
-
-var paths = {
-    scripts: ['./*.js', '!./gulpfile.js']
-};
+    eslint = require('gulp-eslint'),
+    mocha = require('gulp-mocha'),
+    paths = {
+        scripts: ['./*.js', '!./gulpfile.js']
+    };
 
 gulp.task('lint', function() {
     return gulp.src(paths.scripts)
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
+        .pipe(eslint())
+        .pipe(eslint.format());
 });
 
 gulp.task('test', function() {

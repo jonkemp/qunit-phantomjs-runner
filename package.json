@@ -24,7 +24,7 @@
   "homepage": "https://github.com/jonkemp/qunit-phantomjs-runner",
   "devDependencies": {
     "gulp": "^3.8.10",
-    "gulp-jshint": "^2.0.0",
+    "gulp-eslint": "^4.0.0",
     "gulp-mocha": "^4.3.1",
     "mocha": "^4.0.1",
     "phantomjs-prebuilt": "^2.1.7",
