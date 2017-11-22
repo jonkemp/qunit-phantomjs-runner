@@ -1,4 +1,4 @@
-/*global phantom:false, require:false, console:false, window:false, QUnit:false */
+/* global phantom:false, require:false, console:false, window:false, QUnit:false */
 
 (function () {
     'use strict';
@@ -31,7 +31,7 @@
                     }
                 }
             }
-        } catch(e) {
+        } catch (e) {
             console.error('Error parsing "' + args[3] + '": ' + e);
         }
     }
@@ -73,6 +73,7 @@
             var qunitMissing = page.evaluate(function () {
                 return (typeof QUnit === 'undefined' || !QUnit);
             });
+
             if (qunitMissing) {
                 console.error('The `QUnit` object is not present on this page.');
                 exit(1);
@@ -133,6 +134,7 @@
 
                 if (result.failed) {
                     var exceptions = currentTestAssertions.slice(0)[0].split('\n');
+
                     testExceptions[name] = exceptions.map(function (e) {
                         return e.trim();
                     });

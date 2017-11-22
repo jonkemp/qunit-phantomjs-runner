@@ -1,4 +1,4 @@
-/*global phantom:false, require:false, console:false, window:false, QUnit:false */
+/* global phantom:false, require:false, console:false, window:false, QUnit:false */
 
 (function () {
     'use strict';
@@ -73,6 +73,7 @@
             var qunitMissing = page.evaluate(function () {
                 return (typeof QUnit === 'undefined' || !QUnit);
             });
+
             if (qunitMissing) {
                 console.error('The `QUnit` object is not present on this page.');
                 exit(1);
