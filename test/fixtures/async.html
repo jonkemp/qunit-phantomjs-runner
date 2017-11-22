@@ -14,14 +14,14 @@
     <div id="qunit-fixture"></div>
 
     <script>
-      test('async', function() {
-        expect(1);
+      QUnit.test('async', function(assert) {
+        assert.expect(1);
 
-        stop();
+        var done = assert.async();
 
         setTimeout(function() {
-          ok(true, 'This test should not complete before phantomjs times out.');
-          start();
+          assert.ok(true, 'This test should not complete before phantomjs times out.');
+          done();
         }, 6000 );
       });
     </script>

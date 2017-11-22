@@ -14,8 +14,8 @@
     <div id="qunit-fixture"></div>
 
     <script>
-      test('viewport', function() {
-        ok(window.innerWidth === 1000, 'Window is 1000px wide');
+      QUnit.test('viewport', function(assert) {
+        assert.ok(window.innerWidth === 1000, 'Window is 1000px wide');
       });
     </script>
 </body>

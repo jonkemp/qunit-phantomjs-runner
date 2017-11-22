@@ -60,7 +60,7 @@ var assert = require('assert'),
     });
 
 describe('qunit-phantomjs-runner runner.js', function () {
-    this.timeout(5000);
+    this.timeout(10000);
 
     it('tests should pass', function (cb) {
 
@@ -128,7 +128,6 @@ describe('qunit-phantomjs-runner runner.js', function () {
     });
 
     it('should time out', function (cb) {
-        this.timeout(10000);
 
         qunit('test/fixtures/async.html', '../runner.js', 1);
 
@@ -186,7 +185,7 @@ describe('qunit-phantomjs-runner runner.js', function () {
 });
 
 describe('qunit-phantomjs-runner runner-list.js', function () {
-    this.timeout(5000);
+    this.timeout(10000);
 
     it('tests should pass', function (cb) {
 
@@ -241,7 +240,6 @@ describe('qunit-phantomjs-runner runner-list.js', function () {
     });
 
     it('should time out', function (cb) {
-        this.timeout(10000);
 
         qunit('test/fixtures/async.html', '../runner-list.js', 1);
 
@@ -282,7 +280,7 @@ describe('qunit-phantomjs-runner runner-list.js', function () {
 });
 
 describe('qunit-phantomjs-runner runner-json.js', function () {
-    this.timeout(5000);
+    this.timeout(10000);
 
     it('tests should pass', function (cb) {
 
@@ -291,7 +289,7 @@ describe('qunit-phantomjs-runner runner-json.js', function () {
         process.stdout.write = function (str) {
             //out(str);
 
-            assert.ok(/"failed":0,"passed":10,"total":10/.test(str));
+            assert.ok(/"passed":10,"failed":0,"total":10/.test(str));
             process.stdout.write = out;
             cb();
         };
@@ -304,7 +302,7 @@ describe('qunit-phantomjs-runner runner-json.js', function () {
         process.stdout.write = function (str) {
             //out(str);
 
-            assert.ok(/"failed":1,"passed":9,"total":10/.test(str));
+            assert.ok(/"passed":9,"failed":1,"total":10/.test(str));
             process.stdout.write = out;
             cb();
         };
@@ -337,7 +335,6 @@ describe('qunit-phantomjs-runner runner-json.js', function () {
     });
 
     it('should time out', function (cb) {
-        this.timeout(10000);
 
         qunit('test/fixtures/async.html', '../runner-json.js', 1);
 
@@ -370,7 +367,7 @@ describe('qunit-phantomjs-runner runner-json.js', function () {
         process.stdout.write = function (str) {
             //out(str);
 
-            assert.ok(/"failed":0,"passed":1,"total":1/.test(str));
+            assert.ok(/"passed":1,"failed":0,"total":1/.test(str));
             process.stdout.write = out;
             cb();
         };
@@ -378,7 +375,7 @@ describe('qunit-phantomjs-runner runner-json.js', function () {
 });
 
 describe('qunit-phantomjs-runner runner-xml.js', function () {
-    this.timeout(5000);
+    this.timeout(10000);
 
     it('tests should pass', function (cb) {
 
@@ -441,7 +438,6 @@ describe('qunit-phantomjs-runner runner-xml.js', function () {
     });
 
     it('should time out', function (cb) {
-        this.timeout(10000);
 
         qunit('test/fixtures/async.html', '../runner-xml.js', 1);
 
