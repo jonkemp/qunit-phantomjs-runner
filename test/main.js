@@ -1,4 +1,4 @@
-/* jshint node: true */
+/* eslint-disable */
 /* global describe, it */
 
 'use strict';
@@ -108,7 +108,7 @@ describe('qunit-phantomjs-runner runner.js', function () {
         process.stdout.write = function (str) {
             //out(str);
 
-            assert.ok(/No tests were executed. Are you loading tests asynchronously?/.test(str));
+            assert.ok(/Error: No tests were run./.test(str));
             process.stdout.write = out;
             cb();
         };
@@ -220,7 +220,7 @@ describe('qunit-phantomjs-runner runner-list.js', function () {
         process.stdout.write = function (str) {
             //out(str);
 
-            assert.ok(/No tests were executed. Are you loading tests asynchronously?/.test(str));
+            assert.ok(/Error: No tests were run./.test(str));
             process.stdout.write = out;
             cb();
         };
@@ -315,7 +315,7 @@ describe('qunit-phantomjs-runner runner-json.js', function () {
         process.stdout.write = function (str) {
             //out(str);
 
-            assert.ok(/No tests were executed. Are you loading tests asynchronously?/.test(str));
+            assert.ok(/Error: No tests were run./.test(str));
             process.stdout.write = out;
             cb();
         };
@@ -418,7 +418,7 @@ describe('qunit-phantomjs-runner runner-xml.js', function () {
         process.stdout.write = function (str) {
             //out(str);
 
-            assert.ok(/No tests were executed. Are you loading tests asynchronously?/.test(str));
+            assert.ok(/Error: No tests were run./.test(str));
             process.stdout.write = out;
             cb();
         };
