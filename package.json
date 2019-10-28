@@ -28,14 +28,11 @@
     "gulp-mocha": "^7.0.2",
     "mocha": "^6.2.2",
     "phantomjs-prebuilt": "^2.1.16",
-    "qunit": "^2.7.1",
+    "qunit": "^2.9.3",
     "qunitjs": "^2.4.1",
     "xml2js": "^0.4.22"
   },
   "dependencies": {
     "qunit-reporter-junit": "^1.1.1"
-  },
-  "peerDependencies": {
-    "qunitjs": "^2.4.1"
   }
 }
