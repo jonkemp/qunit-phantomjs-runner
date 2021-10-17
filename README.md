@@ -1,4 +1,4 @@
-# PhantomJS Runner QUnit Plugin [![Build Status](https://travis-ci.org/jonkemp/qunit-phantomjs-runner.png?branch=master)](https://travis-ci.org/jonkemp/qunit-phantomjs-runner)
+# PhantomJS Runner QUnit Plugin ![Build Status](https://github.com/jonkemp/qunit-phantomjs-runner/actions/workflows/main.yml/badge.svg?branch=master)
 
 > A PhantomJS-powered headless test runner, providing basic console output for QUnit tests.
 
